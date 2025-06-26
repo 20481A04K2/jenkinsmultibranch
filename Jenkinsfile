@@ -14,7 +14,7 @@ pipeline {
                 sh '''
                     echo "🐍 Creating virtual environment..."
                     python3 -m venv venv
-                    source venv/bin/activate
+                    bash -c "source venv/bin/activate && echo ✅ Virtual environment ready"
                 '''
             }
         }
@@ -22,9 +22,7 @@ pipeline {
         stage('Install Requirements') {
             steps {
                 sh '''
-                    source venv/bin/activate
-                    echo "📦 Installing requirements..."
-                    pip install -r requirements.txt
+                    bash -c "source venv/bin/activate && pip install -r requirements.txt"
                 '''
             }
         }
